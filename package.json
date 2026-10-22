@@ -1,0 +1,76 @@
+{
+  "name": "email-templater",
+  "version": "1.6.0",
+  "description": "Electron app to build email template",
+  "license": "MIT",
+  "author": "mbcodingndworks",
+  "type": "commonjs",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "npm run wprender:all && electron-builder",
+    "distMac": "npm run wprender:all && electron-builder --mac dmg",
+    "wprender": "webpack build --config=webpack.renderer.js --mode=production",
+    "wprender:monaco": "webpack build --config=webpack.monaco.js --mode=production",
+    "wprender:all": "npm run wprender && npm run wprender:monaco"
+  },
+  "build": {
+    "appId": "com.mbworks.emailtemplater",
+    "productName": "Email-templater",
+    "files": [
+      "src/**/*"
+    ],
+    "compression": "normal",
+    "npmRebuild": true,
+    "directories": {
+      "buildResources": "build"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "identity": null,
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis",
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.4",
+    "electron": "^41.9.2",
+    "electron-builder": "^26.5.0",
+    "jquery": "^4.0.0",
+    "postcss": "^8.5.11",
+    "postcss-loader": "^8.2.1",
+    "style-loader": "^4.0.0",
+    "tabulator-tables": "^6.4.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack": "^5.107.1",
+    "webpack-cli": "^7.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "monaco-editor": "^0.53.0",
+    "sass": "^1.100.0",
+    "sass-loader": "^17.0.0",
+    "webpack-merge": "^6.0.1"
+  }
+}

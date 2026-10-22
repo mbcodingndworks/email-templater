@@ -1,0 +1,6 @@
+node_modules
+database.db
+dist
+.DS_Store
+src/libs/*
+src/.DS_Store
